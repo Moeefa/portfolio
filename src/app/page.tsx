@@ -25,59 +25,6 @@ export default function Home() {
 
   return (
     <>
-      <svg
-        className="fixed top-0 right-0 -z-10"
-        xmlns="http://www.w3.org/2000/svg"
-        version="1.1"
-        viewBox="0 0 800 800"
-      >
-        <defs>
-          <filter
-            id="bbblurry-filter"
-            x="-100%"
-            y="-100%"
-            width="400%"
-            height="400%"
-            filterUnits="objectBoundingBox"
-            primitiveUnits="userSpaceOnUse"
-            color-interpolation-filters="sRGB"
-          >
-            <feGaussianBlur
-              stdDeviation="130"
-              x="0%"
-              y="0%"
-              width="100%"
-              height="100%"
-              in="SourceGraphic"
-              edgeMode="none"
-              result="blur"
-            ></feGaussianBlur>
-          </filter>
-        </defs>
-        <g filter="url(#bbblurry-filter)">
-          <ellipse
-            rx="277.5"
-            ry="277.5"
-            cx="600.2347469629418"
-            cy="643.5463905534194"
-            fill="hsla(34, 100%, 50%, 0.11)"
-          ></ellipse>
-          <ellipse
-            rx="277.5"
-            ry="277.5"
-            cx="88.34737983424003"
-            cy="610.7228732283826"
-            fill="hsla(316, 73%, 52%, 0.18)"
-          ></ellipse>
-          <ellipse
-            rx="277.5"
-            ry="277.5"
-            cx="229.19947814941406"
-            cy="167.4176788330078"
-            fill="hsla(201, 38%, 81%, 0.35)"
-          ></ellipse>
-        </g>
-      </svg>
       <div className="transition-opacity duration-1000 ease-in-out">
         <svg
           width="15em"
@@ -94,7 +41,7 @@ export default function Home() {
         </svg>
 
         <main className="flex min-h-screen flex-col py-6 lg:py-16 lg:px-52 container space-y-5">
-          <section className="flex items-center space-x-4 sm:justify-start justify-center">
+          <section className="flex items-center space-x-4 justify-start">
             <Avatar>
               <AvatarImage src="/avatar.jpeg" alt="avatar" />
               <AvatarFallback>LH</AvatarFallback>
@@ -179,7 +126,7 @@ export default function Home() {
           </section>
 
           <Tabs defaultValue="projects">
-            <TabsList className="grid h-full w-[400px] grid-cols-2 shadow-box">
+            <TabsList className="grid h-full sm:w-[400px] w-full grid-cols-2 shadow-box">
               <TabsTrigger value="projects">📚 Projects</TabsTrigger>
               <TabsTrigger value="skills">🏹 Skills</TabsTrigger>
             </TabsList>
