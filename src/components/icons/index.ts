@@ -17,6 +17,7 @@ import { Python } from "./skills/python";
 import { RabbitHole } from "./projects/rabbit-hole";
 import { React } from "./skills/react";
 import { ReactNative } from "./skills/reactnative";
+import { SimpleTB } from "@/components/icons/projects/simpletb";
 import { Tailwind } from "./skills/tailwind";
 import { Tauri } from "./skills/tauri";
 import { Typescript } from "./skills/typescript";
@@ -44,6 +45,7 @@ const icons = {
   ReactNative,
   IFCalc,
   RabbitHole,
+  SimpleTB,
 };
 
 export default icons;

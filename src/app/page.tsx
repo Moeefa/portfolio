@@ -1,5 +1,3 @@
-"use client";
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Card,
@@ -7,48 +5,17 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { useEffect, useState } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
 import Icons from "@/components/icons";
-import Spline from "@splinetool/react-spline";
-import { Timer } from "@/lib/utils";
+import Link from "next/link";
 import { projects } from "./data-projects";
 import { skills } from "./data-skills";
 
 export default function Home() {
-  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
-  const [complete, setComplete] = useState(false);
-  const [loaded, setLoaded] = useState(false);
-  const [timer, setTimer] = useState<Timer | null>(null);
-
-  /*
-   * Load audio on document load
-   * (Audio can be only initialized when document is loaded)
-   */
-  useEffect(() => {
-    setAudio(new Audio("/startup.wav"));
-  }, []);
-
-  /* Pause or resume timer */
-  useEffect(() => {
-    if (!timer) return;
-
-    window.addEventListener("blur", () => timer.pause());
-    window.addEventListener("focus", () => timer.resume());
-  }, [timer]);
-
-  /* Plays audio if timer ran up */
-  useEffect(() => {
-    if (!audio) return;
-
-    audio.volume = 0.2;
-    audio.play();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [complete]);
-
   /* Calculate age */
   const age = Math.floor(
     Math.abs(Date.now() - new Date("2005-10-16").getTime()) /
@@ -58,35 +25,60 @@ export default function Home() {
 
   return (
     <>
-      <div
-        data-complete={complete}
-        className="fixed top-0 right-0 h-full w-full min-h-screen flex items-center justify-center selection-none data-[complete=true]:hidden z-20"
+      <svg
+        className="fixed top-0 right-0 -z-10"
+        xmlns="http://www.w3.org/2000/svg"
+        version="1.1"
+        viewBox="0 0 800 800"
       >
-        <Spline
-          id="computer"
-          scene={
-            typeof window !== "undefined" &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches
-              ? "https://prod.spline.design/yFgodHcWVqeAK9NJ/scene.splinecode"
-              : "https://prod.spline.design/3H2GSdEoeS7REB8l/scene.splinecode"
-          }
-          onPointerDown={() => {
-            if (!loaded) return;
-
-            /* Run a timer until the animation completes */
-            setTimer(
-              new Timer(() => {
-                setComplete(true);
-              }, 8000)
-            );
-          }}
-          onLoad={() => setLoaded(true)}
-        />
-      </div>
-      <div
-        data-complete={complete}
-        className="data-[complete=false]:invisible opacity-0 data-[complete=true]:opacity-100 transition-opacity duration-1000 ease-in-out"
-      >
+        <defs>
+          <filter
+            id="bbblurry-filter"
+            x="-100%"
+            y="-100%"
+            width="400%"
+            height="400%"
+            filterUnits="objectBoundingBox"
+            primitiveUnits="userSpaceOnUse"
+            color-interpolation-filters="sRGB"
+          >
+            <feGaussianBlur
+              stdDeviation="130"
+              x="0%"
+              y="0%"
+              width="100%"
+              height="100%"
+              in="SourceGraphic"
+              edgeMode="none"
+              result="blur"
+            ></feGaussianBlur>
+          </filter>
+        </defs>
+        <g filter="url(#bbblurry-filter)">
+          <ellipse
+            rx="277.5"
+            ry="277.5"
+            cx="600.2347469629418"
+            cy="643.5463905534194"
+            fill="hsla(34, 100%, 50%, 0.11)"
+          ></ellipse>
+          <ellipse
+            rx="277.5"
+            ry="277.5"
+            cx="88.34737983424003"
+            cy="610.7228732283826"
+            fill="hsla(316, 73%, 52%, 0.18)"
+          ></ellipse>
+          <ellipse
+            rx="277.5"
+            ry="277.5"
+            cx="229.19947814941406"
+            cy="167.4176788330078"
+            fill="hsla(201, 38%, 81%, 0.35)"
+          ></ellipse>
+        </g>
+      </svg>
+      <div className="transition-opacity duration-1000 ease-in-out">
         <svg
           width="15em"
           height="12em"
@@ -119,7 +111,7 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="relative leading-7 text-sm [&:not(:first-child)]:mt-4 [&_div]:gap-1 [&_div]:h-[1.4rem] [&_div]:align-middle [&_div]:items-center [&_div]:leading-none [&_div]:bg-secondary/75">
+          <section className="relative text-pretty leading-7 text-sm [&:not(:first-child)]:mt-4 [&_div]:gap-1 [&_div]:h-[1.4rem] [&_div]:align-middle [&_div]:items-center [&_div]:leading-none [&_div]:bg-secondary/75">
             Hello there! 👋
             <br />
             I’m a {age} years old front-end developer, with experience in{" "}
@@ -135,15 +127,17 @@ export default function Home() {
               <Icons.Typescript size="1.10em" /> Typescript
             </Badge>{" "}
             and a few other technologies. I’m currently graduated as Computer
-            Technician at the{" "}
-            <Badge variant="secondary" className="shadow-box border-none">
-              <Icons.IFMT /> Federal Institute of Mato Grosso
-            </Badge>
+            Technician and studying Computer Engineering at the{" "}
+            <Link href="https://ifmt.edu.br/" target="_blank">
+              <Badge variant="secondary" className="shadow-box border-none">
+                <Icons.IFMT /> Federal Institute of Mato Grosso
+              </Badge>
+            </Link>
             , and I’m always looking for new opportunities to learn and grow as
             a developer.
             <br />
             You can find me on:{" "}
-            <a
+            <Link
               href="https://www.linkedin.com/in/xinaider"
               target="_blank"
               rel="noopener noreferrer"
@@ -151,9 +145,9 @@ export default function Home() {
               <Badge variant="secondary" className="shadow-box border-none">
                 <Icons.LinkedIn size="1.25em" /> LinkedIn
               </Badge>
-            </a>
+            </Link>
             ,{" "}
-            <a
+            <Link
               href="https://github.com/Moeefa"
               target="_blank"
               rel="noopener noreferrer"
@@ -161,7 +155,7 @@ export default function Home() {
               <Badge variant="secondary" className="shadow-box border-none">
                 <Icons.Github /> GitHub
               </Badge>
-            </a>
+            </Link>
             ,{" "}
             <Badge
               variant="secondary"
@@ -170,7 +164,7 @@ export default function Home() {
               <Icons.Discord />
             </Badge>{" "}
             and{" "}
-            <a
+            <Link
               href="mailto:luizhenrique.xinaider@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
@@ -178,86 +172,89 @@ export default function Home() {
               <Badge variant="secondary" className="shadow-box border-none">
                 <Icons.Gmail /> Gmail
               </Badge>
-            </a>
+            </Link>
             . Feel free to reach out to me!
             <br />
             It’s always a pleasure to meet new people.
           </section>
 
-          <section className="space-y-3">
-            <h3 className="font-serif scroll-m-20 text-2xl font-semibold tracking-tight mb-[5px]">
-              Skills:
-            </h3>
-            <div className="flex flex-wrap gap-4 items-stretch relative">
-              <h2 className="hidden lg:block font-serif scroll-m-20 w-52 text-4xl font-semibold tracking-tight absolute -z-10 top-0 -right-44 rotate-90">
-                Skills Habilidades Fähigkeiten
-              </h2>
-              <div className="w-full flex gap-2 overflow-y-hidden overflow-x-visible pb-[20px] p-1">
-                {skills.map((skill) => (
-                  <Card
-                    key={skill.title}
-                    className="shadow-box border-none rounded-2xl p-4 cursor-default min-w-24 sm:w-24 h-24 text-xs hover:scale-105 transition-all min-h-full bg-secondary/90 border border-black/10 dark:border-white/5"
-                  >
-                    <CardHeader className="p-0">
-                      <h4 className="text-md font-semibold bg-gradient-to-b from-foreground to-zinc-400 inline-block text-transparent bg-clip-text">
-                        {skill.icon({ size: "2em" })}
-                      </h4>
-                      <p className="text-md">{skill.title}</p>
-                    </CardHeader>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          <section className="space-y-3 relative">
-            <h3 className="font-serif scroll-m-20 text-2xl font-semibold tracking-tight">
-              Featured Projects:
-            </h3>
-
-            <svg
-              viewBox="0 0 602 602"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="absolute -top-9 -left-32 -z-10 h-32 -scale-x-100 -rotate-[55deg] hidden lg:block"
-            >
-              <path
-                d="M351.246 440.388C347.365 444.999 344.205 449.234 340.576 453.018C339.59 454.045 337.187 453.71 335.434 454C335.439 452.42 335.1 450.747 335.502 449.276C340.128 432.316 345.369 415.507 349.42 398.413C352.742 384.398 353.463 369.689 357.574 355.958C361.883 341.57 368.546 327.838 374.874 314.139C376.608 310.387 380.831 307.785 383.911 304.656C385.915 308.074 387.6 311.734 389.979 314.868C398.96 326.701 396.113 340.393 396.525 353.61C396.583 355.476 397.539 357.315 398.08 359.167C399.736 358.058 401.282 356.691 403.083 355.918C404.725 355.212 406.787 354.527 408.416 354.905C418.115 357.155 424.202 352.026 429.096 344.868C436.229 334.433 441.692 322.479 450.306 313.522C463.969 299.314 464.265 281.141 468.01 264.092C470.099 254.586 463.618 247.962 456.511 240.69C437.951 221.698 413.779 211.367 392.967 195.999C384.297 189.596 372.773 187.146 362.721 182.52C342.979 173.434 321.611 172.143 300.575 169.732C292.713 168.832 284.516 171.014 276.46 171.631C256.738 173.14 237.03 175.065 217.278 175.875C195.05 176.787 182.94 191.19 172.056 207.734C171.33 208.839 171.312 210.664 170.377 211.341C146.428 228.666 146.135 257.175 137.221 281.555C127.299 308.692 117.826 335.994 108.036 363.18C106.448 367.589 104.742 372.124 102.118 375.929C100.504 378.269 96.7476 380.927 94.4959 380.51C92.3721 380.116 89.9611 376.087 89.3937 373.306C85.4979 354.214 90.5359 336.419 95.1033 317.756C103.356 284.033 117.311 252.718 131.13 221.436C140.775 199.603 157.122 181.223 177.364 168.047C186.66 161.997 198.693 160.169 209.464 156.368C212.308 155.365 215.531 154.718 217.796 152.919C225.088 147.125 232.298 146.214 240.253 151.45C241.547 152.302 243.874 152.437 245.407 151.935C257.922 147.837 269.756 151.226 281.984 153.975C296.104 157.148 310.761 161.037 324.93 160.214C351.51 158.671 373.361 170.172 394.08 182.976C424.088 201.519 456.461 216.898 481.636 242.669C493.528 254.843 495.502 274.053 487.616 289C482.958 297.828 480.414 307.792 477.198 317.34C476.758 318.647 477.936 320.499 478.365 322.099C479.389 321.095 480.899 320.272 481.354 319.055C483.709 312.759 485.43 306.202 488.123 300.066C489.52 296.882 492.472 294.382 494.721 291.573C496.103 294.825 499.379 298.73 498.524 301.209C495.583 309.735 491.56 317.959 487.267 325.93C482.286 335.177 476.432 343.951 471.359 353.152C470.595 354.538 471.418 358.458 472.525 358.96C482.904 363.669 493.616 367.644 503.982 372.38C507.674 374.067 510.68 377.257 514 379.761C511.219 381.618 508.569 384.81 505.633 385.101C492.99 386.353 484.465 395.665 473.729 400.293C452.798 409.317 431.398 417.507 409.643 424.279C393.106 429.428 375.694 431.736 358.739 435.604C356.232 436.177 354.098 438.389 351.246 440.388ZM455.289 338.453C456.677 336.207 458.064 333.961 459.451 331.715C456.953 332.892 453.749 333.452 452.085 335.358C446.428 341.843 441.203 348.721 436.11 355.666C435.313 356.753 436.059 358.974 436.092 360.67C437.493 360.169 439.458 360.092 440.204 359.098C445.018 352.691 449.565 346.084 455.289 338.453ZM116.469 291.573C117.377 288.848 118.285 286.122 119.193 283.397C117.922 285.759 116.651 288.121 116.469 291.573Z"
-                fill="currentColor"
-              />
-            </svg>
-
-            <div className="flex flex-wrap gap-4 p-1">
-              {projects.map((project) => (
-                <Card
-                  key={project.title}
-                  className="shadow-box border-none sm:w-48 w-full hover:scale-105 transition-all flex flex-col bg-secondary/90 rounded-2xl border border-black/10 dark:border-white/5"
+          <Tabs defaultValue="account">
+            <TabsList className="grid h-full w-[400px] grid-cols-2 shadow-box">
+              <TabsTrigger value="projects">📚 Projects</TabsTrigger>
+              <TabsTrigger value="skills">🏹 Skills</TabsTrigger>
+            </TabsList>
+            <TabsContent value="projects">
+              <section className="space-y-3 relative">
+                <svg
+                  viewBox="0 0 602 602"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="absolute -top-16 -left-32 -z-10 h-32 -scale-x-100 -rotate-[55deg] hidden lg:block"
                 >
-                  <CardHeader>
-                    {project.icon && project.icon({ size: "2em" })}
-                    <h4 className="text-md font-semibold bg-gradient-to-b from-foreground to-secondary-foreground/70 inline-block text-transparent bg-clip-text">
-                      {project.title}
-                    </h4>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-xs">{project.description}</p>
-                  </CardContent>
-                  <CardFooter className="space-x-1 mt-auto">
-                    <a
-                      href={project.url}
-                      className="text-xs text-muted-foreground w-full"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                  <path
+                    d="M351.246 440.388C347.365 444.999 344.205 449.234 340.576 453.018C339.59 454.045 337.187 453.71 335.434 454C335.439 452.42 335.1 450.747 335.502 449.276C340.128 432.316 345.369 415.507 349.42 398.413C352.742 384.398 353.463 369.689 357.574 355.958C361.883 341.57 368.546 327.838 374.874 314.139C376.608 310.387 380.831 307.785 383.911 304.656C385.915 308.074 387.6 311.734 389.979 314.868C398.96 326.701 396.113 340.393 396.525 353.61C396.583 355.476 397.539 357.315 398.08 359.167C399.736 358.058 401.282 356.691 403.083 355.918C404.725 355.212 406.787 354.527 408.416 354.905C418.115 357.155 424.202 352.026 429.096 344.868C436.229 334.433 441.692 322.479 450.306 313.522C463.969 299.314 464.265 281.141 468.01 264.092C470.099 254.586 463.618 247.962 456.511 240.69C437.951 221.698 413.779 211.367 392.967 195.999C384.297 189.596 372.773 187.146 362.721 182.52C342.979 173.434 321.611 172.143 300.575 169.732C292.713 168.832 284.516 171.014 276.46 171.631C256.738 173.14 237.03 175.065 217.278 175.875C195.05 176.787 182.94 191.19 172.056 207.734C171.33 208.839 171.312 210.664 170.377 211.341C146.428 228.666 146.135 257.175 137.221 281.555C127.299 308.692 117.826 335.994 108.036 363.18C106.448 367.589 104.742 372.124 102.118 375.929C100.504 378.269 96.7476 380.927 94.4959 380.51C92.3721 380.116 89.9611 376.087 89.3937 373.306C85.4979 354.214 90.5359 336.419 95.1033 317.756C103.356 284.033 117.311 252.718 131.13 221.436C140.775 199.603 157.122 181.223 177.364 168.047C186.66 161.997 198.693 160.169 209.464 156.368C212.308 155.365 215.531 154.718 217.796 152.919C225.088 147.125 232.298 146.214 240.253 151.45C241.547 152.302 243.874 152.437 245.407 151.935C257.922 147.837 269.756 151.226 281.984 153.975C296.104 157.148 310.761 161.037 324.93 160.214C351.51 158.671 373.361 170.172 394.08 182.976C424.088 201.519 456.461 216.898 481.636 242.669C493.528 254.843 495.502 274.053 487.616 289C482.958 297.828 480.414 307.792 477.198 317.34C476.758 318.647 477.936 320.499 478.365 322.099C479.389 321.095 480.899 320.272 481.354 319.055C483.709 312.759 485.43 306.202 488.123 300.066C489.52 296.882 492.472 294.382 494.721 291.573C496.103 294.825 499.379 298.73 498.524 301.209C495.583 309.735 491.56 317.959 487.267 325.93C482.286 335.177 476.432 343.951 471.359 353.152C470.595 354.538 471.418 358.458 472.525 358.96C482.904 363.669 493.616 367.644 503.982 372.38C507.674 374.067 510.68 377.257 514 379.761C511.219 381.618 508.569 384.81 505.633 385.101C492.99 386.353 484.465 395.665 473.729 400.293C452.798 409.317 431.398 417.507 409.643 424.279C393.106 429.428 375.694 431.736 358.739 435.604C356.232 436.177 354.098 438.389 351.246 440.388ZM455.289 338.453C456.677 336.207 458.064 333.961 459.451 331.715C456.953 332.892 453.749 333.452 452.085 335.358C446.428 341.843 441.203 348.721 436.11 355.666C435.313 356.753 436.059 358.974 436.092 360.67C437.493 360.169 439.458 360.092 440.204 359.098C445.018 352.691 449.565 346.084 455.289 338.453ZM116.469 291.573C117.377 288.848 118.285 286.122 119.193 283.397C117.922 285.759 116.651 288.121 116.469 291.573Z"
+                    fill="currentColor"
+                  />
+                </svg>
+
+                <div className="flex flex-wrap gap-4 p-1">
+                  {projects.map((project) => (
+                    <Card
+                      key={project.title}
+                      className="shadow-box border-none sm:w-48 w-full hover:scale-105 transition-all flex flex-col bg-secondary/90 rounded-2xl border border-black/10 dark:border-white/5"
                     >
-                      <Button className="h-7 shadow-box-foreground w-full gap-0.5 items-center">
-                        Visit <ExternalLink className="size-2.5 self-start" />
-                      </Button>
-                    </a>
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-          </section>
+                      <CardHeader>
+                        {project.icon && project.icon({ size: "2em" })}
+                        <h4 className="text-md font-semibold bg-gradient-to-b from-foreground to-secondary-foreground/70 inline-block text-transparent bg-clip-text">
+                          {project.title}
+                        </h4>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-xs">{project.description}</p>
+                      </CardContent>
+                      <CardFooter className="space-x-1 mt-auto">
+                        <a
+                          href={project.url}
+                          className="text-xs text-muted-foreground w-full"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Button className="h-7 shadow-box-foreground w-full gap-0.5 items-center">
+                            Visit{" "}
+                            <ExternalLink className="size-2.5 self-start" />
+                          </Button>
+                        </a>
+                      </CardFooter>
+                    </Card>
+                  ))}
+                </div>
+              </section>
+            </TabsContent>
+            <TabsContent value="skills">
+              <section className="space-y-3">
+                <div className="flex flex-wrap gap-4 items-stretch relative">
+                  <h2 className="hidden lg:block scroll-m-20 w-52 text-4xl font-semibold tracking-tight absolute -z-10 top-0 -right-44 rotate-90">
+                    Skills Habilidades Fähigkeiten
+                  </h2>
+                  <div className="w-full flex gap-2 overflow-y-hidden overflow-x-visible pb-[20px] p-1">
+                    {skills.map((skill) => (
+                      <Card
+                        key={skill.title}
+                        className="shadow-box border-none rounded-2xl p-4 cursor-default min-w-24 sm:w-24 h-24 text-xs hover:scale-105 transition-all min-h-full bg-secondary/90 border border-black/10 dark:border-white/5"
+                      >
+                        <CardHeader className="p-0">
+                          <h4 className="text-md font-semibold bg-gradient-to-b from-foreground to-zinc-400 inline-block text-transparent bg-clip-text">
+                            {skill.icon({ size: "2em" })}
+                          </h4>
+                          <p className="text-md">{skill.title}</p>
+                        </CardHeader>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+              </section>
+            </TabsContent>
+          </Tabs>
         </main>
       </div>
     </>
