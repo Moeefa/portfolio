@@ -178,7 +178,7 @@ export default function Home() {
             It’s always a pleasure to meet new people.
           </section>
 
-          <Tabs defaultValue="account">
+          <Tabs defaultValue="projects">
             <TabsList className="grid h-full w-[400px] grid-cols-2 shadow-box">
               <TabsTrigger value="projects">📚 Projects</TabsTrigger>
               <TabsTrigger value="skills">🏹 Skills</TabsTrigger>
