@@ -1,4 +1,16 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 import { Badge } from "@/components/ui/badge";
 import BlurFade from "@/components/magicui/blur-fade";
@@ -6,6 +18,7 @@ import BlurFadeText from "@/components/magicui/blur-fade-text";
 import DotPattern from "@/components/magicui/dot-pattern";
 import { HomeIcon } from "@radix-ui/react-icons";
 import { Icons } from "@/components/icons";
+import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import Markdown from "react-markdown";
 import { NotebookIcon } from "lucide-react";
@@ -124,16 +137,16 @@ export default function Page() {
   };
 
   return (
-    <main className="flex flex-col min-h-[100dvh] space-y-10">
+    <main className="flex flex-col min-h-[100dvh] space-y-10 relative">
       <section id="hero">
         <div className="mx-auto w-full max-w-2xl space-y-8">
+          <DotPattern
+            className={cn(
+              "top-[-52em] [mask-image:radial-gradient(300px_circle_at_center,white,transparent)]"
+            )}
+          />
           <div className="gap-2 flex justify-between">
             <div className="flex-col flex flex-1 space-y-1.5">
-              <DotPattern
-                className={cn(
-                  "[mask-image:radial-gradient(300px_circle_at_center,white,transparent)]"
-                )}
-              />
               <BlurFadeText
                 delay={BLUR_FADE_DELAY}
                 className="text-3xl whitespace-pre-line font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"

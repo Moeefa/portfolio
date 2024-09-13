@@ -1,4 +1,4 @@
-import fs from "fs";
+import { list } from "@vercel/blob";
 import matter from "gray-matter";
 import path from "path";
 import rehypePrettyCode from "rehype-pretty-code";
@@ -14,8 +14,14 @@ type Metadata = {
   image?: string;
 };
 
-function getMDXFiles(dir: string) {
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
+async function getMDXFiles(dir: string) {
+  const { blobs } = await list({
+    prefix: `${dir}`,
+  });
+
+  return blobs
+    .filter((blob) => blob.pathname.endsWith(".mdx"))
+    .map((blob) => blob.pathname);
 }
 
 export async function markdownToHTML(markdown: string) {
@@ -37,8 +43,14 @@ export async function markdownToHTML(markdown: string) {
 }
 
 export async function getPost(slug: string, locale: string) {
-  const filePath = path.join("content", locale, `${slug}.mdx`);
-  let source = fs.readFileSync(filePath, "utf-8");
+  const { blobs } = await list({
+    prefix: `${locale}/${slug}`,
+    limit: 1,
+  });
+
+  const res = await fetch(blobs[0].url);
+  const source = await res.text();
+
   const { content: rawContent, data: metadata } = matter(source);
   const content = await markdownToHTML(rawContent);
   return {
@@ -48,8 +60,9 @@ export async function getPost(slug: string, locale: string) {
   };
 }
 
-async function getAllPosts(dir: string, locale: string) {
-  let mdxFiles = getMDXFiles(dir);
+async function getAllPosts(locale: string) {
+  let mdxFiles = await getMDXFiles(locale);
+
   return Promise.all(
     mdxFiles.map(async (file) => {
       let slug = path.basename(file, path.extname(file));
@@ -64,5 +77,5 @@ async function getAllPosts(dir: string, locale: string) {
 }
 
 export async function getBlogPosts(locale: string) {
-  return getAllPosts(path.join(process.cwd(), "content", locale), locale);
+  return getAllPosts(locale);
 }

@@ -1,12 +1,21 @@
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import { HomeIcon, NotebookIcon } from "lucide-react";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
+import Image from "next/image";
 import { Link } from "@/i18n/routing";
+import { LocaleToggle } from "@/components/locale-toggle";
 import { ModeToggle } from "@/components/mode-toggle";
 import { DATA as STATIC_DATA } from "@/data/resume";
 import { Separator } from "@/components/ui/separator";
@@ -76,6 +85,9 @@ export default function Navbar() {
             </DockIcon>
           ))}
         <Separator orientation="vertical" className="h-full py-2" />
+        <DockIcon className="min-w-16 m-2">
+          <LocaleToggle />
+        </DockIcon>
         <DockIcon>
           <Tooltip>
             <TooltipTrigger asChild>

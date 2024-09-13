@@ -3,17 +3,12 @@ import "./globals.css";
 import type { Metadata, ResolvingMetadata } from "next";
 import { getMessages, getTranslations } from "next-intl/server";
 
-import { Inter as FontSans } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
 import Navbar from "@/components/navbar";
 import { NextIntlClientProvider } from "next-intl";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
-
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
 
 type Props = {
   params: { locale: string };
@@ -75,17 +70,14 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6",
-          fontSans.variable
-        )}
-      >
+      <body className={GeistSans.className}>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider attribute="class" defaultTheme="light">
             <TooltipProvider delayDuration={0}>
-              {children}
-              <Navbar />
+              <main className="min-h-screen antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6">
+                {children}
+                <Navbar />
+              </main>
             </TooltipProvider>
           </ThemeProvider>
         </NextIntlClientProvider>
