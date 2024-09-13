@@ -55,7 +55,7 @@ export function LocaleToggle() {
     <Select
       value={DATA.find((item) => item.value === locale)?.value}
       onValueChange={(value: "en-US" | "pt-BR") =>
-        router.replace(pathname, { locale: value, scroll: true })
+        router.replace(pathname, { locale: value, scroll: false })
       }
     >
       <Tooltip>
