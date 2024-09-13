@@ -1,0 +1,52 @@
+{
+  "greeting": "Hi 👋,\nI'm {name}",
+  "description": "Front-end developer. I'm passionate about building products that make a difference.",
+  "summary": "I'm a passionate front-end developer with expertise in React, Next.js, and various other technologies. I started my programming journey in 2017 as a hobby, and it has since become my passion. Currently, I'm pursuing a degree in Computer Engineering while continuously expanding my knowledge.",
+
+  "sections": {
+    "home": "Home",
+    "blog": "Blog",
+    "about": "About",
+    "education": "Education",
+    "skills": "Skills",
+    "projects": "Check out my latest work",
+    "social": "Get in touch"
+  },
+
+  "education": {
+    "present": "Present",
+    "computer_technichian": {
+      "title": "Federal Institute of Education, Science and Technology of Mato Grosso",
+      "degree": "Computer Technician"
+    },
+    "computer_engineering": {
+      "title": "Federal Institute of Education, Science and Technology of Mato Grosso",
+      "degree": "Bachelor of Computer Engineering"
+    },
+    "systems_development_technician": {
+      "title": "State School of Professional and Technological Education of Cuiabá",
+      "degree": "Systems Development Technician"
+    }
+  },
+
+  "projects": {
+    "summary": "I've worked on a variety of projects, from simple websites to complex web applications. Here are some of my favorites.",
+    "source": "Source",
+    "website": "Website",
+
+    "ifcalc": {
+      "description": "Developed a web application to help students calculate their grades and track their academic progress.",
+      "dates": "November 2022 - June 2024"
+    },
+    "rabbit_hole": {
+      "description": "An user-friendly application that provides a comfy and practice way to watch your animes without a single ad by scraping them.",
+      "dates": "June 2024 - Present"
+    },
+    "simpletb": {
+      "description": "A simple and easy-to-use taskbar and menubar for Windows that replaces the default one.",
+      "dates": "June 2024 - Present"
+    }
+  },
+
+  "social": "Feel free to reach out! I love connecting with fellow developers and tech enthusiasts. Whether you want to collaborate, chat about projects, or ask questions, hit me up on <threads>Threads</threads> or at <discord>Discord (@Moeefa)</discord> and I'll respond whenever I can."
+}

@@ -1,0 +1,52 @@
+{
+  "greeting": "Olá 👋,\nme chamo {name}",
+  "description": "Desenvolvedor front-end. Sou apaixonado por construir produtos que fazem a diferença.",
+  "summary": "Sou um desenvolvedor front-end apaixonado com experiência em React, Next.js e várias outras tecnologias. Comecei minha jornada de programação em 2017 como um hobby, e desde então se tornou minha paixão. Atualmente, estou cursando Engenharia da Computação enquanto continuo expandindo meu conhecimento.",
+
+  "sections": {
+    "home": "Início",
+    "blog": "Blog",
+    "about": "Sobre",
+    "education": "Educação",
+    "skills": "Habilidades",
+    "projects": "Confira meus projetos mais recentes",
+    "social": "Entre em contato"
+  },
+
+  "education": {
+    "present": "Presente",
+    "computer_technichian": {
+      "title": "Instituto Federal de Educação, Ciência e Tecnologia de Mato Grosso",
+      "degree": "Técnico em Informática"
+    },
+    "computer_engineering": {
+      "title": "Instituto Federal de Educação, Ciência e Tecnologia de Mato Grosso",
+      "degree": "Bacharelado em Engenharia da Computação"
+    },
+    "systems_development_technician": {
+      "title": "Escola Técnica Estadual de Educação Profissional e Tecnológica de Cuiabá",
+      "degree": "Técnico em Desenvolvimento de Sistemas"
+    }
+  },
+
+  "projects": {
+    "summary": "Trabalhei em uma variedade de projetos, de sites simples a aplicativos web complexos. Aqui estão alguns dos meus favoritos.",
+    "source": "Código-fonte",
+    "website": "Site",
+
+    "ifcalc": {
+      "description": "Desenvolvi uma aplicação web para ajudar estudantes a calcular suas notas e acompanhar seu progresso acadêmico.",
+      "dates": "Novembro 2022 - Junho 2024"
+    },
+    "rabbit_hole": {
+      "description": "Uma aplicação amigável que fornece uma maneira confortável e prática de assistir seus animes sem um único anúncio, através de scraping.",
+      "dates": "Junho 2024 - Presente"
+    },
+    "simpletb": {
+      "description": "Uma barra de tarefas e menu simples e fácil de usar para Windows que substitui a padrão.",
+      "dates": "Junho 2024 - Presente"
+    }
+  },
+
+  "social": "Sinta-se à vontade para entrar em contato! Gosto de me conectar com outros desenvolvedores e entusiastas de tecnologia. Se você deseja colaborar, conversar sobre projetos ou fazer perguntas, me chame no <threads>Threads</threads> ou no <discord>Discord (@Moeefa)</discord> e responderei sempre que puder."
+}
