@@ -5,6 +5,8 @@
 
   "sections": {
     "home": "Início",
+    "language": "Idioma",
+    "theme": "Tema",
     "blog": "Blog",
     "about": "Sobre",
     "education": "Educação",

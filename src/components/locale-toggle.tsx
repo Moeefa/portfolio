@@ -13,10 +13,10 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useLocale, useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { useLocale } from "next-intl";
 import { useTheme } from "next-themes";
 
 const DATA = [
@@ -50,6 +50,7 @@ export function LocaleToggle() {
   const pathname = usePathname();
   const router = useRouter();
   const locale = useLocale();
+  const t = useTranslations();
 
   return (
     <Select
@@ -67,7 +68,7 @@ export function LocaleToggle() {
           </SelectTrigger>
         </TooltipTrigger>
         <TooltipContent>
-          <p>Language</p>
+          <p>{t("sections.language")}</p>
         </TooltipContent>
       </Tooltip>
       <SelectContent className="min-w-10">
