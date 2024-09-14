@@ -71,7 +71,7 @@ export function LocaleToggle() {
             )}
           >
             <div className="aspect-square size-12 flex items-center justify-center">
-              <GlobeIcon className="size-[1.2rem] text-neutral-800 dark:hidden dark:text-neutral-200" />
+              <GlobeIcon className="size-[1.2rem] text-neutral-800 dark:text-neutral-200" />
             </div>
           </CustomSelectTrigger>
         </TooltipTrigger>
