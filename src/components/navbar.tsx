@@ -93,7 +93,7 @@ export default function Navbar() {
             </DockIcon>
           ))}
         <Separator orientation="vertical" className="h-full py-2" />
-        <DockIcon className="min-w-16 m-2">
+        <DockIcon>
           <LocaleToggle />
         </DockIcon>
         <DockIcon>

@@ -1,13 +1,15 @@
 "use client";
 
-import { Link, usePathname, useRouter } from "@/i18n/routing";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
+  CustomSelectTrigger,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Link, usePathname, useRouter } from "@/i18n/routing";
 import {
   Tooltip,
   TooltipContent,
@@ -15,8 +17,9 @@ import {
 } from "@/components/ui/tooltip";
 import { useLocale, useTranslations } from "next-intl";
 
-import { Button } from "@/components/ui/button";
+import { GlobeIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 
 const DATA = [
@@ -60,12 +63,17 @@ export function LocaleToggle() {
       }
     >
       <Tooltip>
-        <TooltipTrigger className="rounded-xl" asChild>
-          <SelectTrigger>
-            <SelectValue
-              placeholder={DATA.find((item) => item.value === locale)?.label}
-            />
-          </SelectTrigger>
+        <TooltipTrigger asChild>
+          <CustomSelectTrigger
+            className={cn(
+              buttonVariants({ variant: "ghost", size: "icon" }),
+              "aspect-square px-2 hover:bg-accent/80 size-12 rounded-full"
+            )}
+          >
+            <div className="aspect-square size-12 flex items-center justify-center">
+              <GlobeIcon className="size-[1.2rem] text-neutral-800 dark:hidden dark:text-neutral-200" />
+            </div>
+          </CustomSelectTrigger>
         </TooltipTrigger>
         <TooltipContent>
           <p>{t("sections.language")}</p>
