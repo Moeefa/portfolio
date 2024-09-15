@@ -36,7 +36,7 @@ export default async function BlogPage() {
             >
               <div className="w-full flex flex-col">
                 <p className="tracking-tight">{post.metadata.title}</p>
-                <p className="h-6 text-xs text-muted-foreground">
+                <p className="text-xs text-muted-foreground">
                   {post.metadata.summary}
                 </p>
                 <p className="h-6 text-xs text-muted-foreground">
