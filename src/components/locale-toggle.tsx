@@ -26,27 +26,11 @@ import { useTheme } from "next-themes";
 const DATA = [
   {
     value: "en-US",
-    label: (
-      <Image
-        src="/flags/en-US.png"
-        width={30}
-        height={30}
-        unoptimized
-        alt="en-US"
-      />
-    ),
+    label: <Image src="/flags/en-US.svg" width={30} height={30} alt="en-US" />,
   },
   {
     value: "pt-BR",
-    label: (
-      <Image
-        src="/flags/pt-BR.png"
-        width={30}
-        height={30}
-        unoptimized
-        alt="pt-BR"
-      />
-    ),
+    label: <Image src="/flags/pt-BR.svg" width={30} height={30} alt="pt-BR" />,
   },
 ];
 

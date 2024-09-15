@@ -4,6 +4,7 @@
   "summary": "Sou um desenvolvedor front-end apaixonado com experiência em React, Next.js e várias outras tecnologias. Comecei minha jornada de programação em 2017 como um hobby, e desde então se tornou minha paixão. Atualmente, estou cursando Engenharia da Computação enquanto continuo expandindo meu conhecimento.",
 
   "sections": {
+    "back": "Voltar a todos os posts",
     "home": "Início",
     "language": "Idioma",
     "theme": "Tema",
@@ -50,5 +51,9 @@
     }
   },
 
+  "post_not_found": {
+    "title": "Post não encontrado",
+    "message": "O post que você está procurando não existe. Talvez ele esteja disponível apenas em outro idioma?"
+  },
   "social": "Sinta-se à vontade para entrar em contato! Gosto de me conectar com outros desenvolvedores e entusiastas de tecnologia. Se você deseja colaborar, conversar sobre projetos ou fazer perguntas, me chame no <threads>Threads</threads> ou no <discord>Discord (@Moeefa)</discord> e responderei sempre que puder."
 }

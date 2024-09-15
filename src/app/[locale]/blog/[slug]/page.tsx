@@ -1,4 +1,5 @@
 import { getBlogPosts, getPost } from "@/data/blog";
+import { getLocale, getTranslations } from "next-intl/server";
 
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { DATA } from "@/data/resume";
@@ -6,7 +7,6 @@ import { Link } from "@/i18n/routing";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { formatDate } from "@/lib/utils";
-import { getLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 export async function generateMetadata({
@@ -18,6 +18,10 @@ export async function generateMetadata({
 }): Promise<Metadata | undefined> {
   const locale = await getLocale();
   let post = await getPost(params.slug, locale);
+
+  if (!post.slug) {
+    return;
+  }
 
   let {
     title,
@@ -60,10 +64,24 @@ export default async function Blog({
   };
 }) {
   const locale = await getLocale();
+  const t = await getTranslations();
   let post = await getPost(params.slug, locale);
 
-  if (!post) {
-    notFound();
+  if (!post.slug) {
+    return (
+      <section>
+        <Link href="/blog" className="flex items-center gap-3 mb-8">
+          <ArrowLeftIcon />
+          {t("sections.back")}
+        </Link>
+        <h1 className="bg-destructive w-fit scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+          {t("post_not_found.title")}
+        </h1>
+        <p className="text-sm text-neutral-600 dark:text-neutral-400">
+          {t("post_not_found.message")}
+        </p>
+      </section>
+    );
   }
 
   return (
@@ -92,7 +110,7 @@ export default async function Blog({
       />
       <Link href="/blog" className="flex items-center gap-3 mb-8">
         <ArrowLeftIcon />
-        {post.metadata.return ? post.metadata.return : "Back to all posts"}
+        {post.metadata.return ? post.metadata.return : t("sections.back")}
       </Link>
 
       <h1 className="title font-medium text-2xl tracking-tighter max-w-[650px]">
@@ -112,7 +130,7 @@ export default async function Blog({
         </Suspense>
       </div>
       <article
-        className="prose dark:prose-invert"
+        className="prose dark:prose-invert sm:mb-0 mb-12"
         dangerouslySetInnerHTML={{ __html: post.source }}
       ></article>
     </section>

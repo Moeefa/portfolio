@@ -48,6 +48,20 @@ export async function getPost(slug: string, locale: string) {
     limit: 1,
   });
 
+  if (!blobs.length) {
+    return {
+      source: "",
+      metadata: {
+        title: "",
+        publishedAt: "",
+        summary: "",
+        image: "",
+        modifiedAt: "",
+        return: "",
+      },
+    };
+  }
+
   const res = await fetch(blobs[0].url);
   const source = await res.text();
 

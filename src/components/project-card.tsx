@@ -49,7 +49,7 @@ export function ProjectCard({
     >
       <Link
         href={href || "#"}
-        className={cn("block cursor-pointer", className)}
+        className={cn("block cursor-pointer m-1", className)}
       >
         {video && (
           <video
@@ -58,7 +58,7 @@ export function ProjectCard({
             loop
             muted
             playsInline
-            className="pointer-events-none mx-auto h-full w-full object-cover object-top" // needed because random black line at bottom of video
+            className="pointer-events-none mx-auto rounded h-full w-full object-cover object-top" // needed because random black line at bottom of video
           />
         )}
         {image && (
@@ -67,7 +67,7 @@ export function ProjectCard({
             alt={title}
             width={500}
             height={300}
-            className="h-full w-full overflow-hidden object-cover object-top"
+            className="h-full w-full rounded overflow-hidden object-cover object-top"
           />
         )}
       </Link>
