@@ -52,10 +52,10 @@ export const DATA = {
 
         navbar: true,
       },
-      Threads: {
-        name: "Threads",
-        url: "https://www.threads.net/@schneider_com_x",
-        icon: Icons.threads,
+      Twitter: {
+        name: "Twitter/X",
+        url: "https://twitter.com/ItsMoeefa",
+        icon: Icons.twitter,
         navbar: true,
       },
       Email: {

@@ -252,13 +252,13 @@ export default function Page() {
               </h2>
               <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 {t.rich("social", {
-                  threads: (chunks) => (
+                  twitter: (chunks) => (
                     <Link
-                      href={DATA.contact.social.Threads.url}
+                      href={DATA.contact.social.Twitter.url}
                       className="text-blue-500 hover:underline inline-flex"
                     >
                       {chunks}
-                      <Icons.threads className="size-4 self-center mx-1" />
+                      <Icons.twitter className="size-4 self-center mx-1" />
                     </Link>
                   ),
                   discord: (chunks) => (
