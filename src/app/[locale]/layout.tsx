@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata, ResolvingMetadata } from "next";
 import { getMessages, getTranslations } from "next-intl/server";
 
+import { AuroraBackground } from "@/components/ui/aurora-background";
 import { GeistSans } from "geist/font/sans";
 import Navbar from "@/components/navbar";
 import { NextIntlClientProvider } from "next-intl";
@@ -74,10 +75,12 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider attribute="class" defaultTheme="light">
             <TooltipProvider delayDuration={0}>
-              <main className="min-h-screen antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6">
-                {children}
-                <Navbar />
-              </main>
+              <AuroraBackground className="h-full">
+                <main className="min-h-screen antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6">
+                  {children}
+                  <Navbar />
+                </main>
+              </AuroraBackground>
             </TooltipProvider>
           </ThemeProvider>
         </NextIntlClientProvider>

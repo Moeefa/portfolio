@@ -1,5 +1,5 @@
 {
-  "greeting": "Hi 👋,\nI'm {name}",
+  "greeting": "Hi 👋,\nI'm <wavy>{name}</wavy>",
   "description": "Front-end developer. I'm passionate about building products that make a difference.",
   "summary": "I'm a passionate front-end developer with expertise in React, Next.js, and various other technologies. I started my programming journey in 2017 as a hobby, and it has since become my passion. Currently, I'm pursuing a degree in Computer Engineering while continuously expanding my knowledge.",
 
@@ -12,8 +12,7 @@
     "about": "About",
     "education": "Education",
     "skills": "Skills",
-    "projects": "Check out my latest work",
-    "social": "Get in touch"
+    "projects": "Check out my latest projects"
   },
 
   "education": {
@@ -55,5 +54,8 @@
     "title": "Post not found",
     "message": "The post you are looking for does not exist. Perhaps it is only available in another language?"
   },
-  "social": "Feel free to reach out! I love connecting with fellow developers and tech enthusiasts. Whether you want to collaborate, chat about projects, or ask questions, hit me up on <twitter>Twitter/X</twitter> or at <discord>Discord (@Moeefa)</discord> and I'll respond whenever I can."
+
+  "blog": {
+    "click_to_read": "Click to read"
+  }
 }
