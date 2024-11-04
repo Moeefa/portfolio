@@ -20,7 +20,7 @@ export default async function BlogPage() {
       <BlurFade delay={BLUR_FADE_DELAY}>
         <h1 className="font-medium text-2xl mb-8 tracking-tighter">blog</h1>
       </BlurFade>
-      <div className="flex gap-4">
+      <div className="flex gap-4 flex-wrap md:justify-normal justify-center w-full">
         {posts
           .sort((a, b) =>
             new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)

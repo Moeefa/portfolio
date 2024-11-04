@@ -155,7 +155,7 @@ export default function Page() {
                 {t.rich("greeting", {
                   name: DATA.name.split(" ")[0],
                   wavy: (chunks) => (
-                    <span className="underline decoration-yellow-300">
+                    <span className="underline decoration-[hsl(24_55.56%_30%)]">
                       {chunks}
                     </span>
                   ),
@@ -167,12 +167,6 @@ export default function Page() {
                 text={t("description")}
               />
             </div>
-            <BlurFade delay={BLUR_FADE_DELAY}>
-              <Avatar className="size-28 shadow">
-                <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
-                <AvatarFallback>{DATA.initials}</AvatarFallback>
-              </Avatar>
-            </BlurFade>
           </div>
         </div>
       </section>
@@ -262,7 +256,6 @@ export default function Page() {
                       />
                     )
                   }
-                  className={id === 1 ? "md:col-span-2 min-h-fit" : "min-h-fit"}
                   icon={
                     <div className="flex gap-1">
                       {project.links.map((link, id) => (
@@ -287,7 +280,7 @@ export default function Page() {
       </section>
       <section id="contact">
         <BlurFade delay={BLUR_FADE_DELAY * 16}>
-          <div className="min-w-full min-h-32 bg-background rounded-xl border flex items-center justify-center gap-6">
+          <div className="min-w-full min-h-32 bg-card rounded-xl border flex items-center justify-center gap-6">
             {Object.values(DATA.contact.social).map((social, id) => (
               <div key={id} className="flex items-center justify-center">
                 <Link href={social.url}>

@@ -3,13 +3,13 @@ import "./globals.css";
 import type { Metadata, ResolvingMetadata } from "next";
 import { getMessages, getTranslations } from "next-intl/server";
 
-import { AuroraBackground } from "@/components/ui/aurora-background";
+import BlurryBlob from "@/components/animata/background/blurry-blob";
 import { GeistSans } from "geist/font/sans";
 import Navbar from "@/components/navbar";
 import { NextIntlClientProvider } from "next-intl";
+import { ProgressiveBlur } from "@/components/progressive-blur";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { cn } from "@/lib/utils";
 
 type Props = {
   params: { locale: string };
@@ -27,7 +27,7 @@ export async function generateMetadata(
     metadataBase: new URL("https://xinaider.vercel.app"),
     title: {
       default: "Xinaider",
-      template: `%s | Xinaider`,
+      template: `%s`,
     },
     description: t("description"),
     openGraph: {
@@ -75,12 +75,18 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider attribute="class" defaultTheme="light">
             <TooltipProvider delayDuration={0}>
-              <AuroraBackground className="h-full">
-                <main className="min-h-screen antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6">
-                  {children}
-                  <Navbar />
-                </main>
-              </AuroraBackground>
+              <BlurryBlob
+                className="rounded-xl opacity-45"
+                firstBlobColor="bg-yellow-100"
+                secondBlobColor="bg-purple-400"
+              />
+
+              <main className="min-h-screen antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6">
+                <ProgressiveBlur direction="top" />
+                {children}
+                <Navbar />
+                <ProgressiveBlur direction="bottom" />
+              </main>
             </TooltipProvider>
           </ThemeProvider>
         </NextIntlClientProvider>

@@ -88,7 +88,7 @@ const HoverRevealSlip = ({ show }: { show: React.ReactNode }) => {
         {/* Front side of the card */}
         <div
           className={cn(
-            "h-full w-full rounded-lg bg-background shadow-md",
+            "h-full w-full rounded-lg bg-card border border-border shadow-md",
             common
           )}
         >
