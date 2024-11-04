@@ -75,12 +75,6 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider attribute="class" defaultTheme="light">
             <TooltipProvider delayDuration={0}>
-              <BlurryBlob
-                className="rounded-xl opacity-45"
-                firstBlobColor="bg-yellow-100"
-                secondBlobColor="bg-purple-400"
-              />
-
               <main className="min-h-screen antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6">
                 <ProgressiveBlur direction="top" />
                 {children}
