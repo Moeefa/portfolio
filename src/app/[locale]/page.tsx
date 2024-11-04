@@ -15,6 +15,7 @@ import { Icons } from "@/components/icons";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import Markdown from "react-markdown";
+import React from "react";
 import { ResumeCard } from "@/components/resume-card";
 import { DATA as STATIC_DATA } from "@/data/resume";
 import { UntiltCard } from "@/components/animata/card/tilted-card";
@@ -58,33 +59,6 @@ export default function Page() {
     ],
 
     projects: [
-      {
-        title: "Rabbit Hole",
-        href: "https://github.com/Moeefa/anime-app",
-        dates: t("projects.rabbit_hole.dates"),
-        active: true,
-        description: t("projects.rabbit_hole.description"),
-        technologies: [
-          "Tauri",
-          "React",
-          "Rust",
-          "Typescript",
-          "TailwindCSS",
-          "Shadcn UI",
-        ],
-        links: [
-          {
-            type: t("projects.source"),
-            href: "https://github.com/Moeefa/anime-app",
-            icon: <Icons.github className="size-3" />,
-          },
-        ],
-        image: "/projects/rabbit-hole.png",
-        video: "",
-        header: <Skeleton />,
-        className: "md:col-span-2",
-        icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
-      },
       {
         title: "IFCalc",
         href: "https://ifcalc.vercel.app",
@@ -136,6 +110,33 @@ export default function Page() {
         className: "md:col-span-2",
         icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
       },
+      {
+        title: "Rabbit Hole",
+        href: "https://github.com/Moeefa/anime-app",
+        dates: t("projects.rabbit_hole.dates"),
+        active: true,
+        description: t("projects.rabbit_hole.description"),
+        technologies: [
+          "Tauri",
+          "React",
+          "Rust",
+          "Typescript",
+          "TailwindCSS",
+          "Shadcn UI",
+        ],
+        links: [
+          {
+            type: t("projects.source"),
+            href: "https://github.com/Moeefa/anime-app",
+            icon: <Icons.github className="size-3" />,
+          },
+        ],
+        image: "/projects/rabbit-hole.png",
+        video: "",
+        header: <Skeleton />,
+        className: "md:col-span-2",
+        icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
+      },
     ],
 
     ...STATIC_DATA,
@@ -143,34 +144,30 @@ export default function Page() {
 
   return (
     <main className="flex flex-col min-h-[100dvh] space-y-10 relative">
-      <section id="hero">
-        <div className="mx-auto w-full max-w-2xl space-y-8">
-          <div className="gap-2 flex justify-between">
-            <div className="flex-col flex flex-1 space-y-1.5">
-              <BlurFade
-                delay={BLUR_FADE_DELAY}
-                className="text-3xl whitespace-pre-line font-bold tracking-tighter sm:text-5xl xl:text-6xl/none mb-2"
-                yOffset={8}
-              >
-                {t.rich("greeting", {
-                  name: DATA.name.split(" ")[0],
-                  wavy: (chunks) => (
-                    <span className="underline decoration-[hsl(24_55.56%_30%)]">
-                      {chunks}
-                    </span>
-                  ),
-                })}
-              </BlurFade>
-              <BlurFadeText
-                className="max-w-[600px] md:text-xl"
-                delay={BLUR_FADE_DELAY}
-                text={t("description")}
-              />
-            </div>
-          </div>
+      <section id="hero" className="max-w-2xl mx-auto w-full">
+        <div className="flex-col flex flex-1 space-y-1.5">
+          <BlurFade
+            delay={BLUR_FADE_DELAY}
+            className="text-3xl whitespace-pre-line font-bold tracking-tighter sm:text-5xl xl:text-6xl/none mb-2"
+            yOffset={8}
+          >
+            {t.rich("greeting", {
+              name: DATA.name.split(" ")[0],
+              wavy: (chunks) => (
+                <span className="underline decoration-[hsl(24_55.56%_30%)]">
+                  {chunks}
+                </span>
+              ),
+            })}
+          </BlurFade>
+          <BlurFadeText
+            className="max-w-[600px] md:text-xl"
+            delay={BLUR_FADE_DELAY}
+            text={t("description")}
+          />
         </div>
       </section>
-      <section id="about">
+      <section id="about" className="max-w-2xl mx-auto">
         <BlurFade delay={BLUR_FADE_DELAY * 3}>
           <h2 className="text-xl font-bold">{t("sections.about")}</h2>
         </BlurFade>
@@ -180,7 +177,7 @@ export default function Page() {
           </Markdown>
         </BlurFade>
       </section>
-      <section id="education">
+      <section id="education" className="max-w-2xl mx-auto">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 7}>
             <h2 className="text-xl font-bold">{t("sections.education")}</h2>
@@ -201,7 +198,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section id="skills">
+      <section id="skills" className="max-w-2xl mx-auto">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 9}>
             <h2 className="text-xl font-bold">{t("sections.skills")}</h2>
@@ -218,7 +215,7 @@ export default function Page() {
       <section id="projects">
         <div className="space-y-12 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 11}>
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+            <div className="max-w-2xl mx-auto flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                   {t("sections.projects")}
@@ -230,66 +227,34 @@ export default function Page() {
             </div>
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 11}>
-            <BentoGrid className="max-w-4xl mx-auto gap-5">
-              {DATA.projects.map((project, id) => (
-                <BentoGridItem
-                  key={project.title}
-                  title={project.title}
-                  description={project.description}
-                  header={
-                    project.video ? (
-                      <video
-                        className="rounded-xl w-full object-cover"
-                        src={project.video}
-                        autoPlay
-                        loop
-                        muted
-                      />
-                    ) : (
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        layout="responsive"
-                        width={16}
-                        height={9}
-                        className="rounded-xl"
-                      />
-                    )
-                  }
-                  icon={
-                    <div className="flex gap-1">
-                      {project.links.map((link, id) => (
-                        <Link key={id} href={link.href}>
-                          <Tooltip>
-                            <TooltipTrigger>
-                              <div className="flex items-center justify-center">
-                                {link.icon}
-                              </div>
-                            </TooltipTrigger>
-                            <TooltipContent>{link.type}</TooltipContent>
-                          </Tooltip>
-                        </Link>
-                      ))}
-                    </div>
-                  }
-                />
-              ))}
-            </BentoGrid>
+            <div className="overflow-hidden sm:p-0 p-3">
+              <div className="flex gap-2 overflow-auto scrollbar-none pl-[calc(50vw-284.44px)] pr-[calc(50vw-284.44px)]">
+                {DATA.projects.map((project, id) => (
+                  <React.Fragment key={id}>
+                    <Link href={project.href}>
+                      {project.video ? (
+                        <video
+                          className="h-80 min-w-[568.88px] w-[568.88px] object-cover rounded"
+                          src={project.video}
+                          autoPlay
+                          loop
+                          muted
+                        />
+                      ) : (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="aspect-video min-w-[568.88px] w-[568.88px] h-80 rounded"
+                        />
+                      )}
+                    </Link>
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
           </BlurFade>
         </div>
-      </section>
-      <section id="contact">
-        <BlurFade delay={BLUR_FADE_DELAY * 16}>
-          <div className="min-w-full min-h-32 bg-card rounded-xl border flex items-center justify-center gap-6">
-            {Object.values(DATA.contact.social).map((social, id) => (
-              <div key={id} className="flex items-center justify-center">
-                <Link href={social.url}>
-                  <social.icon className="size-8" />
-                </Link>
-              </div>
-            ))}
-          </div>
-        </BlurFade>
       </section>
     </main>
   );
