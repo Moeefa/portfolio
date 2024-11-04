@@ -75,7 +75,7 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider attribute="class" defaultTheme="light">
             <TooltipProvider delayDuration={0}>
-              <main className="min-h-screen antialiased py-24">
+              <main className="min-h-screen antialiased py-20">
                 <ProgressiveBlur direction="top" />
                 {children}
                 <Navbar />

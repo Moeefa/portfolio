@@ -1,24 +1,15 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 
 import { Badge } from "@/components/ui/badge";
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
-import FlightWidget from "@/components/animata/widget/flight-widget";
 import { IconClipboardCopy } from "@tabler/icons-react";
 import { Icons } from "@/components/icons";
-import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import Markdown from "react-markdown";
 import React from "react";
 import { ResumeCard } from "@/components/resume-card";
 import { DATA as STATIC_DATA } from "@/data/resume";
-import { UntiltCard } from "@/components/animata/card/tilted-card";
 import { useTranslations } from "next-intl";
 
 const BLUR_FADE_DELAY = 0.04;
@@ -144,7 +135,7 @@ export default function Page() {
 
   return (
     <main className="flex flex-col min-h-[100dvh] space-y-10 relative">
-      <section id="hero" className="max-w-2xl mx-auto w-full">
+      <section id="hero" className="max-w-2xl mx-auto px-6 w-full">
         <div className="flex-col flex flex-1 space-y-1.5">
           <BlurFade
             delay={BLUR_FADE_DELAY}
@@ -167,7 +158,7 @@ export default function Page() {
           />
         </div>
       </section>
-      <section id="about" className="max-w-2xl mx-auto">
+      <section id="about" className="max-w-2xl mx-auto px-6">
         <BlurFade delay={BLUR_FADE_DELAY * 3}>
           <h2 className="text-xl font-bold">{t("sections.about")}</h2>
         </BlurFade>
@@ -177,7 +168,7 @@ export default function Page() {
           </Markdown>
         </BlurFade>
       </section>
-      <section id="education" className="max-w-2xl mx-auto">
+      <section id="education" className="max-w-2xl mx-auto px-6">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 7}>
             <h2 className="text-xl font-bold">{t("sections.education")}</h2>
@@ -198,7 +189,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section id="skills" className="max-w-2xl mx-auto">
+      <section id="skills" className="max-w-2xl mx-auto px-6">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 9}>
             <h2 className="text-xl font-bold">{t("sections.skills")}</h2>
@@ -215,7 +206,7 @@ export default function Page() {
       <section id="projects">
         <div className="space-y-12 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 11}>
-            <div className="max-w-2xl mx-auto flex flex-col items-center justify-center space-y-4 text-center">
+            <div className="max-w-2xl mx-auto px-6 flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                   {t("sections.projects")}
