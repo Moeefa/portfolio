@@ -36,7 +36,7 @@ export const ProgressiveBlur = ({
         {values.map((blur, index) => (
           <div
             key={index}
-            className={`absolute inset-0 pointer-events-none`}
+            className={`absolute inset-0 pointer-events-none transform-gpu`}
             style={{
               zIndex: index + 1,
               backdropFilter: `blur(${blur}px)`,
