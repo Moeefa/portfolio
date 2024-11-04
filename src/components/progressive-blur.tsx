@@ -44,6 +44,7 @@ export const ProgressiveBlur = ({
               backfaceVisibility: "hidden",
               perspective: 1000,
               transform: "translateZ(0)",
+              willChange: "transform",
               zIndex: index + 1,
               backdropFilter: `blur(${blur}px)`,
               maskImage: `linear-gradient(to ${direction}, rgba(0, 0, 0, 0) ${
