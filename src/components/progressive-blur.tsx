@@ -36,8 +36,14 @@ export const ProgressiveBlur = ({
         {values.map((blur, index) => (
           <div
             key={index}
-            className={`absolute inset-0 pointer-events-none transform-gpu`}
+            className={`absolute inset-0 pointer-events-none`}
             style={{
+              WebkitBackfaceVisibility: "hidden",
+              WebkitPerspective: "1000",
+              WebkitTransform: "translateZ(0)",
+              backfaceVisibility: "hidden",
+              perspective: 1000,
+              transform: "translateZ(0)",
               zIndex: index + 1,
               backdropFilter: `blur(${blur}px)`,
               maskImage: `linear-gradient(to ${direction}, rgba(0, 0, 0, 0) ${
