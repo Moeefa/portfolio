@@ -1,6 +1,6 @@
 "use client";
 
-import { RevealImages, type MediaItem } from "@/components/reveal";
+import { type MediaItem, RevealImages } from "@/components/reveal";
 import type { SpringOptions } from "framer-motion";
 
 export function RevealLink({

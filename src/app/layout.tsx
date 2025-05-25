@@ -1,11 +1,10 @@
 import "./globals.css";
 
-import { Geist_Mono, Inter } from "next/font/google";
 import type { Metadata, Viewport } from "next";
+import { Geist_Mono, Inter } from "next/font/google";
 
-import { ProgressiveBlur } from "@/components/progressive-blur";
-import { ThemeProvider } from "@/components/theme-provider";
 import { Fade } from "@/components/fade";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const interSans = Inter({
 	variable: "--font-inter-sans",
@@ -46,9 +45,9 @@ export default function RootLayout({
 					enableSystem
 					disableTransitionOnChange
 				>
-          <Fade direction="top" />
+					<Fade direction="top" />
 					{children}
-          <Fade color="var(--background)" direction="bottom" />
+					<Fade color="var(--background)" direction="bottom" />
 				</ThemeProvider>
 			</body>
 		</html>
